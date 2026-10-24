@@ -134,6 +134,16 @@
     }
   }
 
+  function markStreamPreview(col) {
+    const video = col.querySelector('video');
+    if (!video) return;
+    let el = video;
+    while (el.parentElement && el.parentElement !== col && !el.parentElement.querySelector('.chat-scrollable-area__message-container, .chat-input')) {
+      el = el.parentElement;
+    }
+    if (!el.hasAttribute('data-cbt-preview')) el.setAttribute('data-cbt-preview', '');
+  }
+
   // Fallback: Einklappen-Knopf über das Label finden (falls sich data-a-target ändert)
   function hideCollapseButton() {
     const area = document.querySelector('.right-column') || document;
@@ -183,7 +193,10 @@
     placeDivider();
 
     const col = document.querySelector(CHAT_COLUMN);
-    if (col) markChain(col);
+    if (col) {
+      markChain(col);
+      markStreamPreview(col);
+    }
     hideCollapseButton();
     markPageFrame();
   }

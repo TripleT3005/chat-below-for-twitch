@@ -182,3 +182,11 @@ body.cbt-active.cbt-header-transparent .top-nav > * {
 body.cbt-active.cbt-header-transparent [data-cbt-sidebar] {
   margin-top: var(--cbt-nav-h, 50px) !important;
 }
+
+/* Stream preview during ad breaks keeps Twitch's size */
+body.cbt-active [data-cbt-preview] {
+  width: 34rem !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
