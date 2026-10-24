@@ -12,7 +12,8 @@ Useful when the monitor is split into two or three windows side by side.
 ### Features
 - Toggle via the chat button in the video's control bar (next to settings and fullscreen) or via the extension icon in the browser toolbar
 - Optional keyboard shortcut, configurable at `chrome://extensions/shortcuts` (Edge: `edge://extensions/shortcuts`)
-- The video uses the full window width, the chat fills the space below it
+- The video uses the full window width, the chat fills the space below it (at least 150 px)
+- Drag the line between video and chat to change the split; double-click resets it
 - The setting is remembered for all Twitch tabs; with browser sync enabled it also applies on your other computers
 - Available in English and German, depending on the browser language
 
@@ -37,7 +38,8 @@ Praktisch, wenn der Monitor in zwei oder drei Fenster nebeneinander aufgeteilt i
 ### Funktionen
 - Umschalten über den Chat-Button in der Steuerleiste des Videos (neben Einstellungen und Vollbild) oder über das Erweiterungssymbol oben in der Browserleiste
 - Optionales Tastenkürzel, einstellbar unter `chrome://extensions/shortcuts` (Edge: `edge://extensions/shortcuts`)
-- Das Video nutzt die volle Fensterbreite, der Chat füllt den Platz darunter
+- Das Video nutzt die volle Fensterbreite, der Chat füllt den Platz darunter (mindestens 150 px)
+- Die Linie zwischen Video und Chat lässt sich ziehen, um die Aufteilung zu ändern; Doppelklick setzt sie zurück
 - Die Einstellung gilt für alle Twitch-Tabs; mit aktivierter Browser-Synchronisierung auch auf deinen anderen Computern
 - Auf Deutsch und Englisch verfügbar, abhängig von der Sprache des Browsers
 
