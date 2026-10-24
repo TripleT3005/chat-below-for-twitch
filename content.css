@@ -162,20 +162,20 @@ body.cbt-active [class*="hypeTrainBanner"] div:has(> strong) {
 }
 
 /* Display options */
-body.cbt-active.cbt-sidebar-hidden div:has(> .side-nav) {
+body.cbt-active.cbt-sidebar-hidden [data-cbt-sidebar] {
   display: none !important;
 }
 body.cbt-active.cbt-header-hidden .top-nav {
   display: none !important;
 }
 body.cbt-active.cbt-header-transparent .top-nav {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
+  position: relative !important;
   z-index: 2000 !important;
 }
 body.cbt-active.cbt-header-transparent .top-nav,
 body.cbt-active.cbt-header-transparent .top-nav > * {
   background: transparent !important;
+}
+body.cbt-active.cbt-header-transparent .twilight-main {
+  margin-top: calc(-1 * var(--cbt-nav-h, 50px)) !important;
 }
