@@ -9,6 +9,10 @@ function iconPaths(on) {
   };
 }
 
+function stateTitle(on) {
+  return on ? 'Chat unter dem Video: an (Klick zum Ausschalten)' : 'Chat unter dem Video: aus (Klick zum Einschalten)';
+}
+
 async function getState() {
   const r = await chrome.storage.sync.get({ [KEY]: false });
   return !!r[KEY];
@@ -18,9 +22,6 @@ async function updateIcon(on) {
   try {
     if (on === undefined) on = await getState();
     await chrome.action.setIcon({ path: iconPaths(on) });
-    await chrome.action.setTitle({
-      title: on ? 'Chat unter dem Video: an (Klick zum Ausschalten)' : 'Chat unter dem Video: aus (Klick zum Einschalten)',
-    });
   } catch (e) {
     console.warn('Icon konnte nicht aktualisiert werden:', e);
   }
@@ -37,6 +38,11 @@ chrome.action.onClicked.addListener(toggle);
 
 chrome.commands.onCommand.addListener((command) => {
   if (command === 'toggle-chat-below') toggle();
+});
+
+chrome.runtime.onMessage.addListener((message, sender) => {
+  if (message?.type !== 'state' || sender.tab?.id === undefined) return;
+  chrome.action.setTitle({ tabId: sender.tab.id, title: stateTitle(!!message.active) }).catch(() => {});
 });
 
 chrome.storage.onChanged.addListener((changes, area) => {
