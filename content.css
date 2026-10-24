@@ -1,0 +1,97 @@
+/* 1) Die echte Chat-Spalte (absolut + transform) als feste Fläche unter dem Video */
+body.cbt-active .channel-root__right-column {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: var(--cbt-top, 60vh) !important;
+  width: 100% !important;
+  height: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  transform: none !important;
+  translate: none !important;
+  transition: none !important;
+  z-index: 1000 !important;
+}
+
+/* 2) Elemente zwischen Spalte und Chat auf volle Breite (per JS markiert) */
+body.cbt-active [data-cbt-fill] {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+/* 3) Platz der alten Chat-Spalte freigeben -> Video nutzt die volle Breite */
+body.cbt-active .right-column {
+  width: 0 !important;
+  min-width: 0 !important;
+  flex: 0 0 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* 3b) Player-Container und Player auf volle Breite zwingen.
+   Twitch setzt dem Player eine feste Pixelbreite (Inline-Style) und aktualisiert sie nicht immer. */
+body.cbt-active .channel-root__player {
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+body.cbt-active .channel-root__main--with-chat {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  max-width: none !important;
+}
+body.cbt-active .persistent-player {
+  width: var(--cbt-w, auto) !important;
+}
+
+/* 4) Seite hinter dem Chat nicht scrollbar -> Video bleibt an Ort und Stelle */
+body.cbt-active .root-scrollable__content {
+  overflow: hidden !important;
+}
+
+/* 5) Einklappen-Knopf ausblenden */
+body.cbt-active [data-a-target="right-column__toggle-collapse-btn"],
+body.cbt-active .right-column [data-a-target*="collapse"],
+body.cbt-active [data-cbt-hide] {
+  display: none !important;
+}
+
+/* Button */
+#cbt-toggle { cursor: pointer; }
+
+#cbt-toggle.cbt-in-player {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 .2rem;
+  padding: 0;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+}
+#cbt-toggle.cbt-in-player:hover { background: rgba(255, 255, 255, .2); }
+#cbt-toggle.cbt-in-player.cbt-on { color: #bf94ff; }
+
+#cbt-toggle.cbt-floating {
+  position: fixed;
+  top: 56px;
+  right: 8px;
+  z-index: 99999;
+  padding: 6px 10px;
+  font: 600 13px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #fff;
+  background: #9147ff;
+  border: 0;
+  border-radius: 6px;
+  opacity: .8;
+}
+#cbt-toggle.cbt-floating:hover { opacity: 1; }
+#cbt-toggle[hidden] { display: none !important; }

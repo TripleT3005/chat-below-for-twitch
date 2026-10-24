@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Chat Below for Twitch",
+  "version": "1.1.2",
+  "description": "Zeigt den Twitch-Chat per Klick unter dem Video an – ideal für Fenster, die nebeneinander auf dem Monitor angeordnet sind.",
+  "icons": {
+    "16": "icons/icon-on-16.png",
+    "48": "icons/icon-on-48.png",
+    "128": "icons/icon-on-128.png"
+  },
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.twitch.tv/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Chat unter dem Video: aus",
+    "default_icon": {
+      "16": "icons/icon-off-16.png",
+      "32": "icons/icon-off-32.png",
+      "48": "icons/icon-off-48.png"
+    }
+  },
+  "commands": {
+    "toggle-chat-below": {
+      "suggested_key": { "default": "Alt+Shift+C" },
+      "description": "Chat unter dem Video ein/aus"
+    }
+  }
+}
