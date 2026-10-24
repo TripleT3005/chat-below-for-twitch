@@ -8,6 +8,7 @@
 
 Browser extension for Chrome and Edge that moves the Twitch chat below the video with one click.
 Useful when the monitor is split into two or three windows side by side.
+Website: https://ckass.de/chat-below-for-twitch/
 
 > Not affiliated with or endorsed by Twitch. Twitch is a trademark of Twitch Interactive, Inc.
 
@@ -23,7 +24,7 @@ Useful when the monitor is split into two or three windows side by side.
 
 ### Privacy
 The extension only changes how the Twitch page is laid out. It does not read or send any data, has no access to your Twitch account and makes no external requests.
-It only uses the permissions `storage` (to remember its settings) and `contextMenus` (for the right-click menu of its icon).
+It only uses the permissions `storage` (to remember its settings) and `contextMenus` (for the right-click menu of its icon). Full privacy policy: https://ckass.de/chat-below-for-twitch/#privacy
 
 ### Install
 1. Download the latest ZIP from [Releases](../../releases) and extract it
@@ -38,6 +39,7 @@ It only uses the permissions `storage` (to remember its settings) and `contextMe
 
 Browser-Erweiterung für Chrome und Edge, die den Twitch-Chat per Klick unter das Video verschiebt.
 Praktisch, wenn der Monitor in zwei oder drei Fenster nebeneinander aufgeteilt ist.
+Website: https://ckass.de/chat-below-for-twitch/
 
 > Nicht mit Twitch verbunden und nicht von Twitch unterstützt. Twitch ist eine Marke von Twitch Interactive, Inc.
 
@@ -53,7 +55,7 @@ Praktisch, wenn der Monitor in zwei oder drei Fenster nebeneinander aufgeteilt i
 
 ### Datenschutz
 Die Erweiterung ändert nur die Anordnung der Twitch-Seite. Sie liest und sendet keine Daten, hat keinen Zugriff auf dein Twitch-Konto und stellt keine externen Anfragen.
-Sie nutzt nur die Berechtigungen `storage` (um sich ihre Einstellungen zu merken) und `contextMenus` (für das Rechtsklick-Menü ihres Symbols).
+Sie nutzt nur die Berechtigungen `storage` (um sich ihre Einstellungen zu merken) und `contextMenus` (für das Rechtsklick-Menü ihres Symbols). Vollständige Datenschutzerklärung: https://ckass.de/chat-below-for-twitch/#datenschutz
 
 ### Installation
 1. Die neueste ZIP-Datei unter [Releases](../../releases) herunterladen und entpacken
