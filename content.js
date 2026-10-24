@@ -115,14 +115,8 @@
 
   // ---- Layout ----------------------------------------------------------
   function minChatHeight() {
-    const col = document.querySelector(CHAT_COLUMN);
-    const header = col?.querySelector('.stream-chat-header');
-    if (!header) return FALLBACK_HEADER_HEIGHT;
-    const colTop = col.getBoundingClientRect().top;
-    let bottom = header.getBoundingClientRect().bottom;
-    const hypeTrain = col.querySelector('[class*="hypeTrainBanner"]')?.closest('.sticky-community-highlight');
-    if (hypeTrain) bottom = Math.max(bottom, hypeTrain.getBoundingClientRect().bottom);
-    return Math.ceil(bottom - colTop);
+    const header = document.querySelector(CHAT_COLUMN + ' .stream-chat-header');
+    return header ? Math.ceil(header.getBoundingClientRect().height) : FALLBACK_HEADER_HEIGHT;
   }
 
   function findPlayer() {
@@ -171,7 +165,7 @@
     // Verfügbare Breite = Breite des Seitenbereichs (ohne Seitenleiste)
     const avail = scroller ? scroller.clientWidth : 0;
     const playerTop = player.getBoundingClientRect().top;
-    const chatHeight = videoRatio ? minChatHeight() : Math.max(DEFAULT_CHAT_HEIGHT, minChatHeight());
+    const chatHeight = videoRatio ? minChatHeight() : DEFAULT_CHAT_HEIGHT;
     let maxHeight = window.innerHeight - playerTop - DIVIDER_HEIGHT - chatHeight;
     if (videoRatio) maxHeight = Math.min(maxHeight, videoRatio * window.innerHeight);
     maxHeight = Math.max(MIN_VIDEO_HEIGHT, maxHeight);
