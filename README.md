@@ -2,7 +2,7 @@
 
 # Chat Below for Twitch
 
-[English](#english) · [Deutsch](#deutsch)
+[English](#english) · [Deutsch](#deutsch) · [Screenshots](#screenshots)
 
 ## English
 
@@ -63,3 +63,15 @@ Sie nutzt nur die Berechtigungen `storage` (um sich ihre Einstellungen zu merken
 
 ### Lizenz
 [MIT](LICENSE)
+
+## Screenshots
+
+![Twitch chat below the video](screenshots/01-chat-below.png)
+
+![Without the extension: chat next to the video](screenshots/02-without-extension.png)
+
+![Drag the divider to resize, header bar transparent](screenshots/03-resize-divider.png)
+
+![Narrow window with header bar and sidebar hidden](screenshots/04-narrow-window.png)
+
+![Chat shrunk down to its header row](screenshots/05-compact-chat.png)
