@@ -2,12 +2,17 @@
   'use strict';
 
   const KEY = 'chatBelow';
+  const RATIO_KEY = 'videoHeightRatio';
   const MIN_CHAT_HEIGHT = 150; // px, damit der Chat nie komplett verschwindet
+  const MIN_VIDEO_HEIGHT = 120;
+  const DIVIDER_HEIGHT = 8;
+  const ASPECT_RATIO = 16 / 9;
   const CHAT_COLUMN = '.channel-root__right-column';
   const CONTROLS = '.player-controls__right-control-group';
   const SCROLLER = '.root-scrollable__content';
   const root = document.documentElement;
   let active = false;
+  let videoRatio = null;
 
   // ---- Button ----------------------------------------------------------
   const btn = document.createElement('button');
@@ -60,6 +65,53 @@
     renderButton();
   }
 
+  // ---- Divider ---------------------------------------------------------
+  const divider = document.createElement('div');
+  divider.id = 'cbt-divider';
+  divider.title = chrome.i18n.getMessage('dividerTitle');
+  let dragging = false;
+
+  function placeDivider() {
+    if (!divider.isConnected) document.body.appendChild(divider);
+  }
+
+  function ratioFromPointer(clientY) {
+    const player = findPlayer();
+    if (!player) return videoRatio;
+    const height = clientY - player.getBoundingClientRect().top - DIVIDER_HEIGHT / 2;
+    return Math.max(MIN_VIDEO_HEIGHT, height) / window.innerHeight;
+  }
+
+  divider.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    dragging = true;
+    divider.classList.add('cbt-dragging');
+    divider.setPointerCapture(e.pointerId);
+  });
+
+  divider.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    videoRatio = ratioFromPointer(e.clientY);
+    scheduleUpdate();
+  });
+
+  function endDrag() {
+    if (!dragging) return;
+    dragging = false;
+    divider.classList.remove('cbt-dragging');
+    chrome.storage.sync.set({ [RATIO_KEY]: videoRatio }).catch(() => {});
+  }
+
+  divider.addEventListener('pointerup', endDrag);
+  divider.addEventListener('pointercancel', endDrag);
+
+  divider.addEventListener('dblclick', () => {
+    videoRatio = null;
+    scheduleUpdate();
+    chrome.storage.sync.remove(RATIO_KEY).catch(() => {});
+  });
+
   // ---- Layout ----------------------------------------------------------
   function findPlayer() {
     return document.querySelector('.persistent-player') || document.querySelector('video');
@@ -106,11 +158,20 @@
 
     // Verfügbare Breite = Breite des Seitenbereichs (ohne Seitenleiste)
     const avail = scroller ? scroller.clientWidth : 0;
-    if (avail > 0) root.style.setProperty('--cbt-w', avail + 'px');
+    const playerTop = player.getBoundingClientRect().top;
+    let maxHeight = window.innerHeight - playerTop - DIVIDER_HEIGHT - MIN_CHAT_HEIGHT;
+    if (videoRatio) maxHeight = Math.min(maxHeight, videoRatio * window.innerHeight);
+    maxHeight = Math.max(MIN_VIDEO_HEIGHT, maxHeight);
+    if (avail > 0) {
+      const width = Math.round(Math.min(avail, maxHeight * ASPECT_RATIO));
+      root.style.setProperty('--cbt-w', width + 'px');
+      root.style.setProperty('--cbt-left', Math.round((avail - width) / 2) + 'px');
+    }
 
     const bottom = Math.round(player.getBoundingClientRect().bottom);
-    const top = Math.max(0, Math.min(bottom, window.innerHeight - MIN_CHAT_HEIGHT));
+    const top = Math.max(0, Math.min(bottom, window.innerHeight - MIN_CHAT_HEIGHT - DIVIDER_HEIGHT));
     root.style.setProperty('--cbt-top', top + 'px');
+    placeDivider();
 
     const col = document.querySelector(CHAT_COLUMN);
     if (col) markChain(col);
@@ -165,14 +226,20 @@
 
   // ---- Sync mit Storage (Toolbar-Icon, Tastenkürzel, andere Tabs) ------
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === 'sync' && changes[KEY] && !!changes[KEY].newValue !== active) {
+    if (area !== 'sync') return;
+    if (changes[RATIO_KEY] && !dragging) {
+      videoRatio = changes[RATIO_KEY].newValue ?? null;
+      scheduleUpdate();
+    }
+    if (changes[KEY] && !!changes[KEY].newValue !== active) {
       active = !!changes[KEY].newValue;
       apply();
     }
   });
 
-  chrome.storage.sync.get({ [KEY]: false }).then((r) => {
+  chrome.storage.sync.get({ [KEY]: false, [RATIO_KEY]: null }).then((r) => {
     active = !!r[KEY];
+    videoRatio = r[RATIO_KEY];
     apply();
   });
 

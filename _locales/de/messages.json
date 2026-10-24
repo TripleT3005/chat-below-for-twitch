@@ -20,6 +20,9 @@
   "buttonOn": {
     "message": "Chat: unten ✓"
   },
+  "dividerTitle": {
+    "message": "Ziehen zum Anpassen, Doppelklick zum Zurücksetzen"
+  },
   "buttonOff": {
     "message": "Chat: rechts"
   }

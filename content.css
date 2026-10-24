@@ -4,7 +4,7 @@ body.cbt-active .channel-root__right-column {
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  top: var(--cbt-top, 60vh) !important;
+  top: calc(var(--cbt-top, 60vh) + 8px) !important;
   width: 100% !important;
   height: auto !important;
   min-width: 0 !important;
@@ -47,6 +47,7 @@ body.cbt-active .channel-root__main--with-chat {
 }
 body.cbt-active .persistent-player {
   width: var(--cbt-w, auto) !important;
+  left: var(--cbt-left, 0px) !important;
 }
 
 /* 4) Seite hinter dem Chat nicht scrollbar -> Video bleibt an Ort und Stelle */
@@ -95,3 +96,32 @@ body.cbt-active [data-cbt-hide] {
 }
 #cbt-toggle.cbt-floating:hover { opacity: 1; }
 #cbt-toggle[hidden] { display: none !important; }
+
+/* Divider */
+#cbt-divider { display: none; }
+
+body.cbt-active #cbt-divider {
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--cbt-top, 60vh);
+  height: 8px;
+  z-index: 1001;
+  cursor: row-resize;
+  touch-action: none;
+  background: #18181b;
+}
+body.cbt-active #cbt-divider::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  width: 48px;
+  height: 4px;
+  margin-left: -24px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, .35);
+}
+body.cbt-active #cbt-divider:hover::after,
+body.cbt-active #cbt-divider.cbt-dragging::after { background: #bf94ff; }

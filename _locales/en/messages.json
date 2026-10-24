@@ -20,6 +20,9 @@
   "buttonOn": {
     "message": "Chat: below ✓"
   },
+  "dividerTitle": {
+    "message": "Drag to resize, double-click to reset"
+  },
   "buttonOff": {
     "message": "Chat: right"
   }
