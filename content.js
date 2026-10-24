@@ -3,7 +3,8 @@
 
   const KEY = 'chatBelow';
   const RATIO_KEY = 'videoHeightRatio';
-  const MIN_CHAT_HEIGHT = 150; // px, damit der Chat nie komplett verschwindet
+  const DEFAULT_CHAT_HEIGHT = 150;
+  const FALLBACK_HEADER_HEIGHT = 40;
   const MIN_VIDEO_HEIGHT = 120;
   const DIVIDER_HEIGHT = 8;
   const ASPECT_RATIO = 16 / 9;
@@ -113,6 +114,17 @@
   });
 
   // ---- Layout ----------------------------------------------------------
+  function minChatHeight() {
+    const col = document.querySelector(CHAT_COLUMN);
+    const header = col?.querySelector('.stream-chat-header');
+    if (!header) return FALLBACK_HEADER_HEIGHT;
+    const colTop = col.getBoundingClientRect().top;
+    let bottom = header.getBoundingClientRect().bottom;
+    const hypeTrain = col.querySelector('[class*="hypeTrainBanner"]')?.closest('.sticky-community-highlight');
+    if (hypeTrain) bottom = Math.max(bottom, hypeTrain.getBoundingClientRect().bottom);
+    return Math.ceil(bottom - colTop);
+  }
+
   function findPlayer() {
     return document.querySelector('.persistent-player') || document.querySelector('video');
   }
@@ -159,7 +171,8 @@
     // Verfügbare Breite = Breite des Seitenbereichs (ohne Seitenleiste)
     const avail = scroller ? scroller.clientWidth : 0;
     const playerTop = player.getBoundingClientRect().top;
-    let maxHeight = window.innerHeight - playerTop - DIVIDER_HEIGHT - MIN_CHAT_HEIGHT;
+    const chatHeight = videoRatio ? minChatHeight() : Math.max(DEFAULT_CHAT_HEIGHT, minChatHeight());
+    let maxHeight = window.innerHeight - playerTop - DIVIDER_HEIGHT - chatHeight;
     if (videoRatio) maxHeight = Math.min(maxHeight, videoRatio * window.innerHeight);
     maxHeight = Math.max(MIN_VIDEO_HEIGHT, maxHeight);
     if (avail > 0) {
@@ -169,7 +182,7 @@
     }
 
     const bottom = Math.round(player.getBoundingClientRect().bottom);
-    const top = Math.max(0, Math.min(bottom, window.innerHeight - MIN_CHAT_HEIGHT - DIVIDER_HEIGHT));
+    const top = Math.max(0, Math.min(bottom, window.innerHeight - chatHeight - DIVIDER_HEIGHT));
     root.style.setProperty('--cbt-top', top + 'px');
     placeDivider();
 
