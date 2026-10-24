@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Chat Below for Twitch",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Zeigt den Twitch-Chat per Klick unter dem Video an – ideal für Fenster, die nebeneinander auf dem Monitor angeordnet sind.",
   "icons": {
     "16": "icons/icon-on-16.png",
@@ -21,7 +21,7 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Chat unter dem Video: aus",
+    "default_title": "Chat Below for Twitch",
     "default_icon": {
       "16": "icons/icon-off-16.png",
       "32": "icons/icon-off-32.png",

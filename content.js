@@ -129,6 +129,7 @@
     document.body.classList.toggle('cbt-active', active);
     update();
     nudgeLayout();
+    chrome.runtime.sendMessage({ type: 'state', active }).catch(() => {});
   }
 
   function toggle() {
