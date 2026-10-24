@@ -12,7 +12,7 @@
   const ASPECT_RATIO = 16 / 9;
   const CHAT_COLUMN = '.channel-root__right-column';
   const CONTROLS = '.player-controls__right-control-group';
-  const SCROLLER = '.root-scrollable__content';
+  const SCROLLER = '[data-a-target="root-scroller"], .root-scrollable__content';
   const root = document.documentElement;
   let active = false;
   let videoRatio = null;
@@ -115,6 +115,29 @@
     chrome.storage.sync.remove(RATIO_KEY).catch(() => {});
   });
 
+  // ---- Theatre mode ----------------------------------------------------
+  let theatreLeftAt = 0;
+
+  function theatreButton() {
+    return [...document.querySelectorAll('.player-controls button')]
+      .find((b) => /alt\s*\+\s*t/i.test(b.getAttribute('aria-label') || ''));
+  }
+
+  function leaveTheatreMode() {
+    const button = theatreButton();
+    if (button && !button.hasAttribute('data-cbt-hide')) button.setAttribute('data-cbt-hide', '');
+    if (!button || !document.querySelector('.persistent-player--theatre') || Date.now() - theatreLeftAt < 1500) return;
+    theatreLeftAt = Date.now();
+    button.click();
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (active && e.altKey && e.code === 'KeyT') {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, true);
+
   // ---- Layout ----------------------------------------------------------
   function minChatHeight() {
     const header = document.querySelector(CHAT_COLUMN + ' .stream-chat-header');
@@ -168,7 +191,8 @@
     placeButton();
     const player = findPlayer();
     observePlayer(player);
-    if (!active || !player) return;
+    if (!active || !player || document.fullscreenElement) return;
+    leaveTheatreMode();
 
     // Seite oben festhalten, damit die Video-Unterkante stabil bleibt
     const scroller = document.querySelector(SCROLLER);
@@ -235,7 +259,7 @@
   }
 
   function apply() {
-    document.body.classList.toggle('cbt-active', active);
+    document.body.classList.toggle('cbt-active', active && !document.fullscreenElement);
     update();
     nudgeLayout();
     chrome.runtime.sendMessage({ type: 'state', active }).catch(() => {});
@@ -259,6 +283,7 @@
   }
 
   window.addEventListener('resize', scheduleUpdate);
+  document.addEventListener('fullscreenchange', () => { if (active) apply(); });
 
   // Twitch ist eine SPA; Änderungen im Chat selbst ignorieren (sehr häufig)
   new MutationObserver((mutations) => {
