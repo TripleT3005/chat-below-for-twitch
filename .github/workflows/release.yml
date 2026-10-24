@@ -51,24 +51,24 @@ jobs:
             --title "${{ steps.version.outputs.tag }}" \
             --generate-notes
 
+          if [ -z "$VT_API_KEY" ]; then
+            exit 0
+          fi
+
+          curl --fail --silent --show-error \
+            --header "x-apikey: $VT_API_KEY" \
+            --form "file=@$package" \
+            https://www.virustotal.com/api/v3/files > /dev/null
+
           {
             gh release view "${{ steps.version.outputs.tag }}" --json body -q .body
             echo
             echo "---"
             echo
-            echo "### SHA-256"
-            echo "\`$package\`: \`$hash\`"
-            if [ -n "$VT_API_KEY" ]; then
-              curl --fail --silent --show-error \
-                --header "x-apikey: $VT_API_KEY" \
-                --form "file=@$package" \
-                https://www.virustotal.com/api/v3/files > /dev/null
-              echo
-              echo "### VirusTotal Scan Report"
-              echo "Scanned on: $(date -u +%Y-%m-%d)"
-              echo
-              echo "**$package:** [Scan Report](https://www.virustotal.com/gui/file/$hash)"
-            fi
+            echo "### VirusTotal Scan Report"
+            echo "Scanned on: $(date -u +%Y-%m-%d)"
+            echo
+            echo "**$package:** [Scan Report](https://www.virustotal.com/gui/file/$hash)"
           } > notes.md
 
           gh release edit "${{ steps.version.outputs.tag }}" --notes-file notes.md
