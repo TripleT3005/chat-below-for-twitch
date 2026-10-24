@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "Chat Below for Twitch"
+  },
+  "extDescription": {
+    "message": "Shows the Twitch chat below the video with one click – ideal for windows arranged side by side on the monitor."
+  },
+  "commandToggle": {
+    "message": "Toggle chat below the video"
+  },
+  "titleOn": {
+    "message": "Chat below the video: on (click to turn off)"
+  },
+  "titleOff": {
+    "message": "Chat below the video: off (click to turn on)"
+  },
+  "buttonTitle": {
+    "message": "Toggle chat below the video"
+  },
+  "buttonOn": {
+    "message": "Chat: below ✓"
+  },
+  "buttonOff": {
+    "message": "Chat: right"
+  }
+}

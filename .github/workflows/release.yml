@@ -35,7 +35,7 @@ jobs:
       - name: Build package
         if: steps.check.outputs.exists == 'false'
         run: |
-          zip -r "${{ steps.version.outputs.package }}" manifest.json background.js content.js content.css icons LICENSE
+          zip -r "${{ steps.version.outputs.package }}" manifest.json background.js content.js content.css icons _locales LICENSE
           sha256sum "${{ steps.version.outputs.package }}" > "${{ steps.version.outputs.package }}.sha256"
 
       - name: Create release

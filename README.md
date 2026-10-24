@@ -14,6 +14,7 @@ Useful when the monitor is split into two or three windows side by side.
 - Optional keyboard shortcut, configurable at `chrome://extensions/shortcuts` (Edge: `edge://extensions/shortcuts`)
 - The video uses the full window width, the chat fills the space below it
 - The setting is remembered for all Twitch tabs; with browser sync enabled it also applies on your other computers
+- Available in English and German, depending on the browser language
 
 ### Privacy
 The extension only changes how the Twitch page is laid out. It does not read or send any data, has no access to your Twitch account and makes no external requests.
@@ -38,6 +39,7 @@ Praktisch, wenn der Monitor in zwei oder drei Fenster nebeneinander aufgeteilt i
 - Optionales Tastenkürzel, einstellbar unter `chrome://extensions/shortcuts` (Edge: `edge://extensions/shortcuts`)
 - Das Video nutzt die volle Fensterbreite, der Chat füllt den Platz darunter
 - Die Einstellung gilt für alle Twitch-Tabs; mit aktivierter Browser-Synchronisierung auch auf deinen anderen Computern
+- Auf Deutsch und Englisch verfügbar, abhängig von der Sprache des Browsers
 
 ### Datenschutz
 Die Erweiterung ändert nur die Anordnung der Twitch-Seite. Sie liest und sendet keine Daten, hat keinen Zugriff auf dein Twitch-Konto und stellt keine externen Anfragen.

@@ -1,0 +1,26 @@
+{
+  "extName": {
+    "message": "Chat Below for Twitch"
+  },
+  "extDescription": {
+    "message": "Zeigt den Twitch-Chat per Klick unter dem Video an – ideal für Fenster, die nebeneinander auf dem Monitor angeordnet sind."
+  },
+  "commandToggle": {
+    "message": "Chat unter dem Video ein/aus"
+  },
+  "titleOn": {
+    "message": "Chat unter dem Video: an (Klick zum Ausschalten)"
+  },
+  "titleOff": {
+    "message": "Chat unter dem Video: aus (Klick zum Einschalten)"
+  },
+  "buttonTitle": {
+    "message": "Chat unter dem Video ein/aus"
+  },
+  "buttonOn": {
+    "message": "Chat: unten ✓"
+  },
+  "buttonOff": {
+    "message": "Chat: rechts"
+  }
+}
