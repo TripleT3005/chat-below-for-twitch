@@ -185,6 +185,19 @@
     const col = document.querySelector(CHAT_COLUMN);
     if (col) markChain(col);
     hideCollapseButton();
+    markPageFrame();
+  }
+
+  function markPageFrame() {
+    const nav = document.querySelector('.top-nav');
+    if (nav && nav.offsetHeight > 0) root.style.setProperty('--cbt-nav-h', nav.offsetHeight + 'px');
+
+    const main = document.querySelector('.twilight-main');
+    const sidebar = document.querySelector('.side-nav, #side-nav, [data-a-target^="side-nav-bar"]');
+    if (!main || !sidebar || main.contains(sidebar)) return;
+    let el = sidebar;
+    while (el.parentElement && !el.parentElement.contains(main)) el = el.parentElement;
+    if (!el.hasAttribute('data-cbt-sidebar')) el.setAttribute('data-cbt-sidebar', '');
   }
 
   // Twitch vermisst den Player nur bei einem Fenster-resize neu.
