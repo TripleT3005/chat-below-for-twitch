@@ -160,3 +160,22 @@ body.cbt-active [class*="hypeTrainBanner"] div:has(> strong) {
   align-items: baseline !important;
   gap: .5rem !important;
 }
+
+/* Display options */
+body.cbt-active.cbt-sidebar-hidden div:has(> .side-nav) {
+  display: none !important;
+}
+body.cbt-active.cbt-header-hidden .top-nav {
+  display: none !important;
+}
+body.cbt-active.cbt-header-transparent .top-nav {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 2000 !important;
+}
+body.cbt-active.cbt-header-transparent .top-nav,
+body.cbt-active.cbt-header-transparent .top-nav > * {
+  background: transparent !important;
+}

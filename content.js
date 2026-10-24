@@ -3,6 +3,8 @@
 
   const KEY = 'chatBelow';
   const RATIO_KEY = 'videoHeightRatio';
+  const HEADER_KEY = 'headerMode';
+  const SIDEBAR_KEY = 'hideSidebar';
   const DEFAULT_CHAT_HEIGHT = 150;
   const FALLBACK_HEADER_HEIGHT = 40;
   const MIN_VIDEO_HEIGHT = 120;
@@ -193,6 +195,19 @@
     );
   }
 
+  function headerMode() {
+    if (document.body.classList.contains('cbt-header-hidden')) return 'hidden';
+    if (document.body.classList.contains('cbt-header-transparent')) return 'transparent';
+    return 'normal';
+  }
+
+  function applyDisplayOptions(settings) {
+    const mode = settings[HEADER_KEY];
+    document.body.classList.toggle('cbt-header-hidden', mode === 'hidden');
+    document.body.classList.toggle('cbt-header-transparent', mode === 'transparent');
+    document.body.classList.toggle('cbt-sidebar-hidden', !!settings[SIDEBAR_KEY]);
+  }
+
   function apply() {
     document.body.classList.toggle('cbt-active', active);
     update();
@@ -238,15 +253,23 @@
       videoRatio = changes[RATIO_KEY].newValue ?? null;
       scheduleUpdate();
     }
+    if (changes[HEADER_KEY] || changes[SIDEBAR_KEY]) {
+      applyDisplayOptions({
+        [HEADER_KEY]: changes[HEADER_KEY] ? changes[HEADER_KEY].newValue : headerMode(),
+        [SIDEBAR_KEY]: changes[SIDEBAR_KEY] ? changes[SIDEBAR_KEY].newValue : document.body.classList.contains('cbt-sidebar-hidden'),
+      });
+      if (active) nudgeLayout();
+    }
     if (changes[KEY] && !!changes[KEY].newValue !== active) {
       active = !!changes[KEY].newValue;
       apply();
     }
   });
 
-  chrome.storage.sync.get({ [KEY]: false, [RATIO_KEY]: null }).then((r) => {
+  chrome.storage.sync.get({ [KEY]: false, [RATIO_KEY]: null, [HEADER_KEY]: 'normal', [SIDEBAR_KEY]: false }).then((r) => {
     active = !!r[KEY];
     videoRatio = r[RATIO_KEY];
+    applyDisplayOptions(r);
     apply();
   });
 

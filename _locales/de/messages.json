@@ -25,5 +25,20 @@
   },
   "buttonOff": {
     "message": "Chat: rechts"
+  },
+  "menuHeader": {
+    "message": "Kopfleiste"
+  },
+  "menuHeader_normal": {
+    "message": "Anzeigen"
+  },
+  "menuHeader_transparent": {
+    "message": "Transparent"
+  },
+  "menuHeader_hidden": {
+    "message": "Ausblenden"
+  },
+  "menuHideSidebar": {
+    "message": "Linke Seitenleiste ausblenden"
   }
 }

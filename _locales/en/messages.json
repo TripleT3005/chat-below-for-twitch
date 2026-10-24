@@ -25,5 +25,20 @@
   },
   "buttonOff": {
     "message": "Chat: right"
+  },
+  "menuHeader": {
+    "message": "Header bar"
+  },
+  "menuHeader_normal": {
+    "message": "Show"
+  },
+  "menuHeader_transparent": {
+    "message": "Transparent"
+  },
+  "menuHeader_hidden": {
+    "message": "Hide"
+  },
+  "menuHideSidebar": {
+    "message": "Hide left sidebar"
   }
 }
