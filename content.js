@@ -191,7 +191,7 @@
     placeButton();
     const player = findPlayer();
     observePlayer(player);
-    if (!active || !player) return;
+    if (!active || !player || document.fullscreenElement) return;
     leaveTheatreMode();
 
     // Seite oben festhalten, damit die Video-Unterkante stabil bleibt
@@ -259,7 +259,7 @@
   }
 
   function apply() {
-    document.body.classList.toggle('cbt-active', active);
+    document.body.classList.toggle('cbt-active', active && !document.fullscreenElement);
     update();
     nudgeLayout();
     chrome.runtime.sendMessage({ type: 'state', active }).catch(() => {});
@@ -283,6 +283,7 @@
   }
 
   window.addEventListener('resize', scheduleUpdate);
+  document.addEventListener('fullscreenchange', () => { if (active) apply(); });
 
   // Twitch ist eine SPA; Änderungen im Chat selbst ignorieren (sehr häufig)
   new MutationObserver((mutations) => {
