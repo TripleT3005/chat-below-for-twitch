@@ -132,3 +132,31 @@ body.cbt-active .channel-page__video-player,
 body.cbt-active .video-player__container {
   max-height: none !important;
 }
+
+/* Hype train in the chat header row */
+body.cbt-active .sticky-community-highlight:has([class*="hypeTrainBanner"]) {
+  display: block !important;
+  position: fixed !important;
+  top: calc(var(--cbt-top, 60vh) + 8px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: auto !important;
+  height: 40px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  z-index: 10 !important;
+}
+body.cbt-active .sticky-community-highlight:has([class*="hypeTrainBanner"]) :is(div, button) {
+  min-height: 0 !important;
+  height: 100% !important;
+}
+body.cbt-active [class*="hypeTrainBanner"] div:has(> strong),
+body.cbt-active [class*="hypeTrainBanner"] div:has(> strong) div {
+  height: auto !important;
+}
+body.cbt-active [class*="hypeTrainBanner"] div:has(> strong) {
+  flex-direction: row !important;
+  align-items: baseline !important;
+  gap: .5rem !important;
+}
