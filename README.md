@@ -14,13 +14,14 @@ Useful when the monitor is split into two or three windows side by side.
 - Optional keyboard shortcut, configurable at `chrome://extensions/shortcuts` (Edge: `edge://extensions/shortcuts`)
 - The video uses the full window width, the chat fills the space below it (at least 150 px)
 - A running hype train is shown compactly in the chat header row
+- Right-click the extension icon to hide the header bar or make it transparent, and to hide the left sidebar (applies while the chat is below the video)
 - Drag the line between video and chat to change the split, down to just the chat header; double-click resets it
 - The setting is remembered for all Twitch tabs; with browser sync enabled it also applies on your other computers
 - Available in English and German, depending on the browser language
 
 ### Privacy
 The extension only changes how the Twitch page is laid out. It does not read or send any data, has no access to your Twitch account and makes no external requests.
-The only extra permission is `storage`, which lets it remember whether the chat is shown below the video.
+It only uses the permissions `storage` (to remember its settings) and `contextMenus` (for the right-click menu of its icon).
 
 ### Install
 1. Download the latest ZIP from [Releases](../../releases) and extract it
@@ -41,13 +42,14 @@ Praktisch, wenn der Monitor in zwei oder drei Fenster nebeneinander aufgeteilt i
 - Optionales Tastenkürzel, einstellbar unter `chrome://extensions/shortcuts` (Edge: `edge://extensions/shortcuts`)
 - Das Video nutzt die volle Fensterbreite, der Chat füllt den Platz darunter (mindestens 150 px)
 - Ein laufender Hypetrain wird kompakt in der Kopfzeile des Chats angezeigt
+- Per Rechtsklick auf das Erweiterungssymbol lässt sich die Kopfleiste ausblenden oder transparent schalten und die linke Seitenleiste ausblenden (gilt, solange der Chat unter dem Video ist)
 - Die Linie zwischen Video und Chat lässt sich ziehen, um die Aufteilung zu ändern, bis nur noch die Chat-Kopfzeile sichtbar ist; Doppelklick setzt sie zurück
 - Die Einstellung gilt für alle Twitch-Tabs; mit aktivierter Browser-Synchronisierung auch auf deinen anderen Computern
 - Auf Deutsch und Englisch verfügbar, abhängig von der Sprache des Browsers
 
 ### Datenschutz
 Die Erweiterung ändert nur die Anordnung der Twitch-Seite. Sie liest und sendet keine Daten, hat keinen Zugriff auf dein Twitch-Konto und stellt keine externen Anfragen.
-Die einzige zusätzliche Berechtigung ist `storage`, damit sie sich merken kann, ob der Chat unter dem Video angezeigt wird.
+Sie nutzt nur die Berechtigungen `storage` (um sich ihre Einstellungen zu merken) und `contextMenus` (für das Rechtsklick-Menü ihres Symbols).
 
 ### Installation
 1. Die neueste ZIP-Datei unter [Releases](../../releases) herunterladen und entpacken
