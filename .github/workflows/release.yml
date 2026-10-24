@@ -15,14 +15,18 @@ jobs:
 
       - name: Read version
         id: version
-        run: echo "version=$(jq -r .version manifest.json)" >> "$GITHUB_OUTPUT"
+        run: |
+          version=$(jq -r .version manifest.json)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+          echo "package=chat-below-for-twitch-$version.zip" >> "$GITHUB_OUTPUT"
 
       - name: Check for existing release
         id: check
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh release view "v${{ steps.version.outputs.version }}" > /dev/null 2>&1; then
+          if gh release view "${{ steps.version.outputs.tag }}" > /dev/null 2>&1; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
@@ -30,14 +34,41 @@ jobs:
 
       - name: Build package
         if: steps.check.outputs.exists == 'false'
-        run: zip -r "chat-below-for-twitch-${{ steps.version.outputs.version }}.zip" manifest.json background.js content.js content.css icons LICENSE
+        run: |
+          zip -r "${{ steps.version.outputs.package }}" manifest.json background.js content.js content.css icons LICENSE
+          sha256sum "${{ steps.version.outputs.package }}" > "${{ steps.version.outputs.package }}.sha256"
 
       - name: Create release
         if: steps.check.outputs.exists == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
+          VT_API_KEY: ${{ secrets.VT_API_KEY }}
         run: |
-          gh release create "v${{ steps.version.outputs.version }}" \
-            "chat-below-for-twitch-${{ steps.version.outputs.version }}.zip" \
-            --title "v${{ steps.version.outputs.version }}" \
+          package="${{ steps.version.outputs.package }}"
+          hash=$(cut -d ' ' -f 1 "$package.sha256")
+
+          gh release create "${{ steps.version.outputs.tag }}" "$package" "$package.sha256" \
+            --title "${{ steps.version.outputs.tag }}" \
             --generate-notes
+
+          {
+            gh release view "${{ steps.version.outputs.tag }}" --json body -q .body
+            echo
+            echo "---"
+            echo
+            echo "### SHA-256"
+            echo "\`$package\`: \`$hash\`"
+            if [ -n "$VT_API_KEY" ]; then
+              curl --fail --silent --show-error \
+                --header "x-apikey: $VT_API_KEY" \
+                --form "file=@$package" \
+                https://www.virustotal.com/api/v3/files > /dev/null
+              echo
+              echo "### VirusTotal Scan Report"
+              echo "Scanned on: $(date -u +%Y-%m-%d)"
+              echo
+              echo "**$package:** [Scan Report](https://www.virustotal.com/gui/file/$hash)"
+            fi
+          } > notes.md
+
+          gh release edit "${{ steps.version.outputs.tag }}" --notes-file notes.md
