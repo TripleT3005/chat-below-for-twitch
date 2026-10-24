@@ -13,7 +13,7 @@
   const btn = document.createElement('button');
   btn.id = 'cbt-toggle';
   btn.type = 'button';
-  btn.title = 'Chat unter dem Video ein/aus';
+  btn.title = chrome.i18n.getMessage('buttonTitle');
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -38,7 +38,7 @@
     if (btn.classList.contains('cbt-in-player')) {
       if (!btn.firstElementChild) btn.replaceChildren(chatIcon());
     } else {
-      btn.textContent = active ? 'Chat: unten ✓' : 'Chat: rechts';
+      btn.textContent = chrome.i18n.getMessage(active ? 'buttonOn' : 'buttonOff');
     }
   }
 

@@ -10,7 +10,7 @@ function iconPaths(on) {
 }
 
 function stateTitle(on) {
-  return on ? 'Chat unter dem Video: an (Klick zum Ausschalten)' : 'Chat unter dem Video: aus (Klick zum Einschalten)';
+  return chrome.i18n.getMessage(on ? 'titleOn' : 'titleOff');
 }
 
 async function getState() {
@@ -23,7 +23,7 @@ async function updateIcon(on) {
     if (on === undefined) on = await getState();
     await chrome.action.setIcon({ path: iconPaths(on) });
   } catch (e) {
-    console.warn('Icon konnte nicht aktualisiert werden:', e);
+    console.warn('Could not update icon:', e);
   }
 }
 
