@@ -125,3 +125,10 @@ body.cbt-active #cbt-divider::after {
 }
 body.cbt-active #cbt-divider:hover::after,
 body.cbt-active #cbt-divider.cbt-dragging::after { background: #bf94ff; }
+
+/* Player height is controlled by the divider */
+body.cbt-active .persistent-player,
+body.cbt-active .channel-page__video-player,
+body.cbt-active .video-player__container {
+  max-height: none !important;
+}
