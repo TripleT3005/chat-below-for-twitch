@@ -64,7 +64,7 @@
       btn.replaceChildren();
       document.body.appendChild(btn);
     }
-    btn.hidden = !findPlayer();
+    btn.hidden = !isStreamPage();
     renderButton();
   }
 
@@ -116,7 +116,9 @@
   });
 
   // ---- Theatre mode ----------------------------------------------------
+  const THEATRE_GRACE = 1000;
   let theatreLeftAt = 0;
+  let theatreSeenAt = 0;
 
   function theatreButton() {
     return [...document.querySelectorAll('.player-controls button')]
@@ -126,13 +128,18 @@
   function leaveTheatreMode() {
     const button = theatreButton();
     if (button && !button.hasAttribute('data-cbt-hide')) button.setAttribute('data-cbt-hide', '');
-    if (!button || !document.querySelector('.persistent-player--theatre') || Date.now() - theatreLeftAt < 1500) return;
+    if (!button || !document.querySelector('.persistent-player--theatre')) {
+      theatreSeenAt = 0;
+      return;
+    }
+    if (!theatreSeenAt) theatreSeenAt = Date.now();
+    if (Date.now() - theatreSeenAt < THEATRE_GRACE || Date.now() - theatreLeftAt < 1500) return;
     theatreLeftAt = Date.now();
     button.click();
   }
 
   document.addEventListener('keydown', (e) => {
-    if (active && e.altKey && e.code === 'KeyT') {
+    if (pageActive && e.altKey && e.code === 'KeyT') {
       e.preventDefault();
       e.stopImmediatePropagation();
     }
@@ -142,6 +149,19 @@
   function minChatHeight() {
     const header = document.querySelector(CHAT_COLUMN + ' .stream-chat-header');
     return header ? Math.ceil(header.getBoundingClientRect().height) : FALLBACK_HEADER_HEIGHT;
+  }
+
+  function isStreamPage() {
+    return !!document.querySelector('.channel-root--watch');
+  }
+
+  let pageActive = false;
+  function syncPageState() {
+    const next = active && isStreamPage() && !document.fullscreenElement;
+    if (next === pageActive) return;
+    pageActive = next;
+    document.body.classList.toggle('cbt-active', next);
+    nudgeLayout();
   }
 
   function findPlayer() {
@@ -191,7 +211,8 @@
     placeButton();
     const player = findPlayer();
     observePlayer(player);
-    if (!active || !player || document.fullscreenElement) return;
+    syncPageState();
+    if (!pageActive || !player) return;
     leaveTheatreMode();
 
     // Seite oben festhalten, damit die Video-Unterkante stabil bleibt
@@ -259,7 +280,7 @@
   }
 
   function apply() {
-    document.body.classList.toggle('cbt-active', active && !document.fullscreenElement);
+    syncPageState();
     update();
     nudgeLayout();
     chrome.runtime.sendMessage({ type: 'state', active }).catch(() => {});
