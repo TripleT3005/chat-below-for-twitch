@@ -9,6 +9,8 @@
 Browser extension for Chrome and Edge that moves the Twitch chat below the video with one click.
 Useful when the monitor is split into two or three windows side by side.
 
+> Not affiliated with or endorsed by Twitch. Twitch is a trademark of Twitch Interactive, Inc.
+
 ### Features
 - Toggle via the chat button in the video's control bar (next to settings and fullscreen) or via the extension icon in the browser toolbar
 - Optional keyboard shortcut, configurable at `chrome://extensions/shortcuts` (Edge: `edge://extensions/shortcuts`)
@@ -36,6 +38,8 @@ It only uses the permissions `storage` (to remember its settings) and `contextMe
 
 Browser-Erweiterung für Chrome und Edge, die den Twitch-Chat per Klick unter das Video verschiebt.
 Praktisch, wenn der Monitor in zwei oder drei Fenster nebeneinander aufgeteilt ist.
+
+> Nicht mit Twitch verbunden und nicht von Twitch unterstützt. Twitch ist eine Marke von Twitch Interactive, Inc.
 
 ### Funktionen
 - Umschalten über den Chat-Button in der Steuerleiste des Videos (neben Einstellungen und Vollbild) oder über das Erweiterungssymbol oben in der Browserleiste
