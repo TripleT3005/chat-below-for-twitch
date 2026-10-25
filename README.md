@@ -27,6 +27,10 @@ The extension only changes how the Twitch page is laid out. It does not read or 
 It only uses the permissions `storage` (to remember its settings) and `contextMenus` (for the right-click menu of its icon). Full privacy policy: https://ckass.de/chat-below-for-twitch/#privacy
 
 ### Install
+- **Chrome:** [Chrome Web Store](https://chromewebstore.google.com/detail/chat-below-for-twitch/jfdcnglmpjdiofdlapohkchhhmkjffog)
+- **Edge:** Edge Add-ons (coming soon)
+
+Manual install from ZIP:
 1. Download the latest ZIP from [Releases](../../releases) and extract it
 2. Open `chrome://extensions` (Edge: `edge://extensions`)
 3. Enable "Developer mode"
@@ -58,6 +62,10 @@ Die Erweiterung ändert nur die Anordnung der Twitch-Seite. Sie liest und sendet
 Sie nutzt nur die Berechtigungen `storage` (um sich ihre Einstellungen zu merken) und `contextMenus` (für das Rechtsklick-Menü ihres Symbols). Vollständige Datenschutzerklärung: https://ckass.de/chat-below-for-twitch/#datenschutz
 
 ### Installation
+- **Chrome:** [Chrome Web Store](https://chromewebstore.google.com/detail/chat-below-for-twitch/jfdcnglmpjdiofdlapohkchhhmkjffog)
+- **Edge:** Edge Add-ons (bald verfügbar)
+
+Manuelle Installation aus der ZIP-Datei:
 1. Die neueste ZIP-Datei unter [Releases](../../releases) herunterladen und entpacken
 2. `chrome://extensions` öffnen (Edge: `edge://extensions`)
 3. „Entwicklermodus“ aktivieren
