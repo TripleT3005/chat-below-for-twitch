@@ -43,7 +43,7 @@ Manual install from ZIP:
 <!-- web:skip -->
 
 ### Building
-The extension needs no build step; the release ZIP contains `manifest.json`, `background.js`, `content.js`, `content.css`, `icons`, `_locales` and `LICENSE`. Run the tests with `node --test`.
+The extension needs no build step; the release ZIP contains `manifest.json`, `background.js`, `content.js`, `content.css`, `icons`, `_locales` and `LICENSE`. For the checks install the development tools with `npm ci` (Node.js 24); `npm run format:check`, `npm run lint` and `npm test` check formatting, lint and tests, `npm run format` fixes the formatting. None of these tools is part of the extension.
 
 A release is created automatically when a new version in `manifest.json` reaches `main`. Each version needs a section with English and German notes in [CHANGELOG.md](CHANGELOG.md), which becomes the release notes; tests and pipeline fail without it. Changes without a new version are collected under `[Unreleased]`; a release fails while that section still has entries.
 
@@ -91,7 +91,7 @@ Manuelle Installation aus der ZIP-Datei:
 <!-- web:skip -->
 
 ### Bauen
-Die Erweiterung braucht keinen Build-Schritt; die Release-ZIP enthält `manifest.json`, `background.js`, `content.js`, `content.css`, `icons`, `_locales` und `LICENSE`. Die Tests laufen mit `node --test`.
+Die Erweiterung braucht keinen Build-Schritt; die Release-ZIP enthält `manifest.json`, `background.js`, `content.js`, `content.css`, `icons`, `_locales` und `LICENSE`. Für die Prüfungen die Entwicklungswerkzeuge mit `npm ci` installieren (Node.js 24); `npm run format:check`, `npm run lint` und `npm test` prüfen Formatierung, Lint und Tests, `npm run format` korrigiert die Formatierung. Keines dieser Werkzeuge ist Teil der Erweiterung.
 
 Ein Release entsteht automatisch, sobald eine neue Version in `manifest.json` auf `main` landet. Jede Version braucht einen Abschnitt mit englischen und deutschen Notizen in [CHANGELOG.md](CHANGELOG.md), der zu den Release-Notizen wird; ohne ihn schlagen Tests und Pipeline fehl. Änderungen ohne neue Version stehen unter `[Unreleased]`; ein Release schlägt fehl, solange dieser Abschnitt noch Einträge hat.
 

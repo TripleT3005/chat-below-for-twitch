@@ -1,7 +1,8 @@
 (() => {
   // Data
   const channel = 'TripleT3005';
-  const channelAvatar = 'https://static-cdn.jtvnw.net/jtv_user_pictures/b92976e3-cab6-49dc-9366-2e70e38074ff-profile_image-300x300.png';
+  const channelAvatar =
+    'https://static-cdn.jtvnw.net/jtv_user_pictures/b92976e3-cab6-49dc-9366-2e70e38074ff-profile_image-300x300.png';
   const messages = [
     ['TripleT3005', '#00ff00', 'Welcome to the stream, everyone!'],
     ['PixelPanda', '#1e90ff', 'Hi from Berlin 👋'],
@@ -30,7 +31,20 @@
     ['AmberArcade', 'Racing'],
     ['VelvetVolt', 'Software & Development'],
   ];
-  const avatarColors = ['#e76f51', '#2a9d8f', '#e9c46a', '#8ab17d', '#6d597a', '#457b9d', '#f4a261', '#b56576', '#3d405b', '#81b29a', '#e07a5f', '#5e60ce'];
+  const avatarColors = [
+    '#e76f51',
+    '#2a9d8f',
+    '#e9c46a',
+    '#8ab17d',
+    '#6d597a',
+    '#457b9d',
+    '#f4a261',
+    '#b56576',
+    '#3d405b',
+    '#81b29a',
+    '#e07a5f',
+    '#5e60ce',
+  ];
 
   const scene = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
     <defs>
@@ -45,10 +59,12 @@
     <path d="M0 800 L260 740 L520 790 L800 730 L1080 800 L1340 750 L1600 790 L1600 900 L0 900Z" fill="#191431"/>
   </svg>`;
 
-  const avatar = (name, color) => 'data:image/svg+xml,' + encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="${color}"/>` +
-    `<text x="32" y="42" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#fff" text-anchor="middle">${name[0]}</text></svg>`
-  );
+  const avatar = (name, color) =>
+    'data:image/svg+xml,' +
+    encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="${color}"/>` +
+        `<text x="32" y="42" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#fff" text-anchor="middle">${name[0]}</text></svg>`,
+    );
 
   // Styles
   document.getElementById('cbt-staging')?.remove();
@@ -100,7 +116,9 @@
   }
 
   // Sidebar
-  const cards = [...document.querySelectorAll('.side-nav .side-nav-card')].filter((card) => !card.parentElement?.closest('.side-nav-card'));
+  const cards = [...document.querySelectorAll('.side-nav .side-nav-card')].filter(
+    (card) => !card.parentElement?.closest('.side-nav-card'),
+  );
   cards.forEach((card, index) => {
     const [name, category] = sidebarChannels[index % sidebarChannels.length];
     const color = avatarColors[index % avatarColors.length];
@@ -108,8 +126,9 @@
       img.removeAttribute('srcset');
       img.src = avatar(name, color);
     });
-    const texts = [...card.querySelectorAll('p, span, h3')].filter((el) =>
-      el.children.length === 0 && el.textContent.trim() && !el.closest('[class*="tooltip"]'));
+    const texts = [...card.querySelectorAll('p, span, h3')].filter(
+      (el) => el.children.length === 0 && el.textContent.trim() && !el.closest('[class*="tooltip"]'),
+    );
     let named = false;
     texts.forEach((el) => {
       const text = el.textContent.trim();
@@ -139,7 +158,10 @@
   const info = document.querySelector('.channel-info-content');
   if (info) {
     [...info.children].slice(1).forEach((el) => el.setAttribute('data-cbt-staging-hide', ''));
-    const setText = (selector, text) => info.querySelectorAll(selector).forEach((el) => { el.textContent = text; });
+    const setText = (selector, text) =>
+      info.querySelectorAll(selector).forEach((el) => {
+        el.textContent = text;
+      });
     info.querySelectorAll('img.tw-image-avatar').forEach((img) => {
       img.removeAttribute('srcset');
       img.src = channelAvatar;
@@ -149,7 +171,8 @@
     setText('[data-a-target="stream-game-link"]', 'Just Chatting');
     setText('[data-a-target="animated-channel-viewers-count"]', '128');
     info.querySelectorAll('svg[aria-label]').forEach((svg) => {
-      if (/verif/i.test(svg.getAttribute('aria-label'))) (svg.closest('.tw-svg') || svg).setAttribute('data-cbt-staging-hide', '');
+      if (/verif/i.test(svg.getAttribute('aria-label')))
+        (svg.closest('.tw-svg') || svg).setAttribute('data-cbt-staging-hide', '');
     });
     info.querySelectorAll('.tw-tag').forEach((tag, index) => {
       if (index === 0) tag.textContent = 'English';
@@ -168,7 +191,9 @@
   hideByText(/Join the Twitch community|Sign up to experience/);
   hideByText(/Animated Emotes can be disabled|Animierte Emotes/);
   hideByText(/^\s*(Slow Mode|Slow-Chat-Modus)\s*$/);
-  document.querySelectorAll('.top-nav [class*="Badge"], .top-nav [class*="badge"]').forEach((el) => el.setAttribute('data-cbt-staging-hide', ''));
+  document
+    .querySelectorAll('.top-nav [class*="Badge"], .top-nav [class*="badge"]')
+    .forEach((el) => el.setAttribute('data-cbt-staging-hide', ''));
   document.querySelectorAll('[data-a-target="chat-scroller"] *').forEach((el) => {
     if (el.scrollHeight > el.clientHeight) el.scrollTop = el.scrollHeight;
   });
