@@ -1,8 +1,8 @@
-<img src="icons/icon-on-128.png" alt="" width="64" align="right">
+# <img src="icons/icon-on-128.png" alt="" width="40" align="center"> Chat Below for Twitch
 
-# Chat Below for Twitch
-
+<!-- web:skip -->
 [English](#english) · [Deutsch](#deutsch) · [Screenshots](#screenshots)
+<!-- /web:skip -->
 
 ## English
 
@@ -19,12 +19,16 @@ Website: https://ckass.de/chat-below-for-twitch/
 - A running hype train is shown compactly in the chat header row
 - Right-click the extension icon to hide the header bar or make it transparent, and to hide the left sidebar (applies while the chat is below the video)
 - Drag the line between video and chat to change the split, down to just the chat header; double-click resets it
+- Only active on stream pages; theatre mode and fullscreen keep working
 - The setting is remembered for all Twitch tabs; with browser sync enabled it also applies on your other computers
 - Available in English and German, depending on the browser language
 
 ### Privacy
-The extension only changes how the Twitch page is laid out. It does not read or send any data, has no access to your Twitch account and makes no external requests.
-It only uses the permissions `storage` (to remember its settings) and `contextMenus` (for the right-click menu of its icon). Full privacy policy: https://ckass.de/chat-below-for-twitch/#privacy
+The extension only changes how Twitch stream pages are laid out. It does not collect, read or send any personal data, has no access to your Twitch account and makes no external requests.
+
+Your settings (chat below on/off, divider position, header bar and sidebar options) are stored with the browser's own storage. With browser sync enabled, your browser syncs them across your devices; the extension itself does not transmit them anywhere.
+
+Permissions: `storage` to remember the settings, `contextMenus` for the right-click menu of the icon and access to `www.twitch.tv` to change the page layout.
 
 ### Install
 - **Chrome:** [Chrome Web Store](https://chromewebstore.google.com/detail/chat-below-for-twitch/jfdcnglmpjdiofdlapohkchhhmkjffog)
@@ -54,12 +58,16 @@ Website: https://ckass.de/chat-below-for-twitch/
 - Ein laufender Hypetrain wird kompakt in der Kopfzeile des Chats angezeigt
 - Per Rechtsklick auf das Erweiterungssymbol lässt sich die Kopfleiste ausblenden oder transparent schalten und die linke Seitenleiste ausblenden (gilt, solange der Chat unter dem Video ist)
 - Die Linie zwischen Video und Chat lässt sich ziehen, um die Aufteilung zu ändern, bis nur noch die Chat-Kopfzeile sichtbar ist; Doppelklick setzt sie zurück
+- Nur auf Stream-Seiten aktiv; Kino-Modus und Vollbild funktionieren weiterhin
 - Die Einstellung gilt für alle Twitch-Tabs; mit aktivierter Browser-Synchronisierung auch auf deinen anderen Computern
 - Auf Deutsch und Englisch verfügbar, abhängig von der Sprache des Browsers
 
 ### Datenschutz
-Die Erweiterung ändert nur die Anordnung der Twitch-Seite. Sie liest und sendet keine Daten, hat keinen Zugriff auf dein Twitch-Konto und stellt keine externen Anfragen.
-Sie nutzt nur die Berechtigungen `storage` (um sich ihre Einstellungen zu merken) und `contextMenus` (für das Rechtsklick-Menü ihres Symbols). Vollständige Datenschutzerklärung: https://ckass.de/chat-below-for-twitch/#datenschutz
+Die Erweiterung ändert nur die Anordnung von Twitch-Stream-Seiten. Sie erhebt, liest und sendet keine personenbezogenen Daten, hat keinen Zugriff auf dein Twitch-Konto und stellt keine externen Anfragen.
+
+Deine Einstellungen (Chat unten an/aus, Position der Trennlinie, Optionen für Kopf- und Seitenleiste) werden im Speicher des Browsers abgelegt. Ist die Browser-Synchronisierung aktiv, gleicht dein Browser sie zwischen deinen Geräten ab; die Erweiterung selbst überträgt sie nirgendwohin.
+
+Berechtigungen: `storage`, um die Einstellungen zu speichern, `contextMenus` für das Rechtsklick-Menü des Symbols und Zugriff auf `www.twitch.tv`, um die Anordnung der Seite zu ändern.
 
 ### Installation
 - **Chrome:** [Chrome Web Store](https://chromewebstore.google.com/detail/chat-below-for-twitch/jfdcnglmpjdiofdlapohkchhhmkjffog)
