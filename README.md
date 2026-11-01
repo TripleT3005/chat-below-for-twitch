@@ -40,6 +40,11 @@ Manual install from ZIP:
 3. Enable "Developer mode"
 4. Click "Load unpacked" and select the extracted folder
 
+### Building
+The extension needs no build step; the release ZIP contains `manifest.json`, `background.js`, `content.js`, `content.css`, `icons`, `_locales` and `LICENSE`. Run the tests with `node --test`.
+
+A release is created automatically when a new version in `manifest.json` reaches `main`. Each version needs a section with English and German notes in [CHANGELOG.md](CHANGELOG.md), which becomes the release notes; tests and pipeline fail without it. Changes without a new version are collected under `[Unreleased]`; a release fails while that section still has entries.
+
 ### License
 [MIT](LICENSE)
 
@@ -78,6 +83,11 @@ Manuelle Installation aus der ZIP-Datei:
 2. `chrome://extensions` öffnen (Edge: `edge://extensions`)
 3. „Entwicklermodus“ aktivieren
 4. „Entpackte Erweiterung laden“ und den entpackten Ordner auswählen
+
+### Bauen
+Die Erweiterung braucht keinen Build-Schritt; die Release-ZIP enthält `manifest.json`, `background.js`, `content.js`, `content.css`, `icons`, `_locales` und `LICENSE`. Die Tests laufen mit `node --test`.
+
+Ein Release entsteht automatisch, sobald eine neue Version in `manifest.json` auf `main` landet. Jede Version braucht einen Abschnitt mit englischen und deutschen Notizen in [CHANGELOG.md](CHANGELOG.md), der zu den Release-Notizen wird; ohne ihn schlagen Tests und Pipeline fehl. Änderungen ohne neue Version stehen unter `[Unreleased]`; ein Release schlägt fehl, solange dieser Abschnitt noch Einträge hat.
 
 ### Lizenz
 [MIT](LICENSE)
