@@ -82,11 +82,11 @@ Praktisch, wenn der Monitor in zwei oder drei Fenster nebeneinander aufgeteilt i
 > Rückmeldungen und Fehlerberichte gern als [Issue](../../issues). Keine Verbindung zu Twitch und nicht von Twitch unterstützt. Twitch ist eine Marke von Twitch Interactive, Inc.
 
 <p>
-  <img src="screenshots/01-chat-below.png" alt="Twitch chat below the video" width="49%">
-  <img src="screenshots/02-without-extension.png" alt="Without the extension: chat next to the video" width="49%">
-  <img src="screenshots/03-resize-divider.png" alt="Drag the divider to resize, header bar transparent" width="49%">
-  <img src="screenshots/04-narrow-window.png" alt="Narrow window with header bar and sidebar hidden" width="49%">
-  <img src="screenshots/05-compact-chat.png" alt="Chat shrunk down to its header row" width="49%">
+  <img src="screenshots/01-chat-below.png" alt="Twitch-Chat unter dem Video" width="49%">
+  <img src="screenshots/02-without-extension.png" alt="Ohne die Erweiterung: Chat neben dem Video" width="49%">
+  <img src="screenshots/03-resize-divider.png" alt="Trennlinie ziehen zum Ändern der Größe, Kopfleiste transparent" width="49%">
+  <img src="screenshots/04-narrow-window.png" alt="Schmales Fenster mit ausgeblendeter Kopf- und Seitenleiste" width="49%">
+  <img src="screenshots/05-compact-chat.png" alt="Chat auf seine Kopfzeile verkleinert" width="49%">
 </p>
 
 ### Funktionen
