@@ -121,8 +121,9 @@
   let theatreSeenAt = 0;
 
   function theatreButton() {
-    return [...document.querySelectorAll('.player-controls button')]
-      .find((b) => /alt\s*\+\s*t/i.test(b.getAttribute('aria-label') || ''));
+    return [...document.querySelectorAll('.player-controls button')].find((b) =>
+      /alt\s*\+\s*t/i.test(b.getAttribute('aria-label') || ''),
+    );
   }
 
   function leaveTheatreMode() {
@@ -138,12 +139,16 @@
     button.click();
   }
 
-  document.addEventListener('keydown', (e) => {
-    if (pageActive && e.altKey && e.code === 'KeyT') {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-    }
-  }, true);
+  document.addEventListener(
+    'keydown',
+    (e) => {
+      if (pageActive && e.altKey && e.code === 'KeyT') {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
+    },
+    true,
+  );
 
   // ---- Layout ----------------------------------------------------------
   function minChatHeight() {
@@ -181,7 +186,11 @@
     const video = col.querySelector('video');
     if (!video) return;
     let el = video;
-    while (el.parentElement && el.parentElement !== col && !el.parentElement.querySelector('.chat-scrollable-area__message-container, .chat-input')) {
+    while (
+      el.parentElement &&
+      el.parentElement !== col &&
+      !el.parentElement.querySelector('.chat-scrollable-area__message-container, .chat-input')
+    ) {
       el = el.parentElement;
     }
     if (!el.hasAttribute('data-cbt-preview')) el.setAttribute('data-cbt-preview', '');
@@ -261,9 +270,7 @@
   // Twitch vermisst den Player nur bei einem Fenster-resize neu.
   // Nach dem Umschalten (Platz der Chat-Spalte frei/belegt) deshalb selbst anstoßen.
   function nudgeLayout() {
-    [0, 150, 500].forEach((ms) =>
-      setTimeout(() => window.dispatchEvent(new Event('resize')), ms)
-    );
+    [0, 150, 500].forEach((ms) => setTimeout(() => window.dispatchEvent(new Event('resize')), ms));
   }
 
   function headerMode() {
@@ -304,7 +311,9 @@
   }
 
   window.addEventListener('resize', scheduleUpdate);
-  document.addEventListener('fullscreenchange', () => { if (active) apply(); });
+  document.addEventListener('fullscreenchange', () => {
+    if (active) apply();
+  });
 
   // Twitch ist eine SPA; Änderungen im Chat selbst ignorieren (sehr häufig)
   new MutationObserver((mutations) => {
@@ -316,7 +325,9 @@
   }).observe(document.body, { childList: true, subtree: true });
 
   // Sicherheitsnetz: Twitch verschiebt den Player teils nur per transform
-  setInterval(() => { if (active) update(); }, 500);
+  setInterval(() => {
+    if (active) update();
+  }, 500);
 
   // ---- Sync mit Storage (Toolbar-Icon, Tastenkürzel, andere Tabs) ------
   chrome.storage.onChanged.addListener((changes, area) => {
@@ -328,7 +339,9 @@
     if (changes[HEADER_KEY] || changes[SIDEBAR_KEY]) {
       applyDisplayOptions({
         [HEADER_KEY]: changes[HEADER_KEY] ? changes[HEADER_KEY].newValue : headerMode(),
-        [SIDEBAR_KEY]: changes[SIDEBAR_KEY] ? changes[SIDEBAR_KEY].newValue : document.body.classList.contains('cbt-sidebar-hidden'),
+        [SIDEBAR_KEY]: changes[SIDEBAR_KEY]
+          ? changes[SIDEBAR_KEY].newValue
+          : document.body.classList.contains('cbt-sidebar-hidden'),
       });
       if (active) nudgeLayout();
     }
@@ -338,12 +351,14 @@
     }
   });
 
-  chrome.storage.sync.get({ [KEY]: false, [RATIO_KEY]: null, [HEADER_KEY]: 'normal', [SIDEBAR_KEY]: false }).then((r) => {
-    active = !!r[KEY];
-    videoRatio = r[RATIO_KEY];
-    applyDisplayOptions(r);
-    apply();
-  });
+  chrome.storage.sync
+    .get({ [KEY]: false, [RATIO_KEY]: null, [HEADER_KEY]: 'normal', [SIDEBAR_KEY]: false })
+    .then((r) => {
+      active = !!r[KEY];
+      videoRatio = r[RATIO_KEY];
+      applyDisplayOptions(r);
+      apply();
+    });
 
   placeButton();
 })();

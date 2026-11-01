@@ -56,14 +56,16 @@ body.cbt-active .root-scrollable__content {
 }
 
 /* 5) Einklappen-Knopf ausblenden */
-body.cbt-active [data-a-target="right-column__toggle-collapse-btn"],
-body.cbt-active .right-column [data-a-target*="collapse"],
+body.cbt-active [data-a-target='right-column__toggle-collapse-btn'],
+body.cbt-active .right-column [data-a-target*='collapse'],
 body.cbt-active [data-cbt-hide] {
   display: none !important;
 }
 
 /* Button */
-#cbt-toggle { cursor: pointer; }
+#cbt-toggle {
+  cursor: pointer;
+}
 
 #cbt-toggle.cbt-in-player {
   display: inline-flex;
@@ -71,15 +73,19 @@ body.cbt-active [data-cbt-hide] {
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  margin: 0 .2rem;
+  margin: 0 0.2rem;
   padding: 0;
   color: #fff;
   background: transparent;
   border: 0;
   border-radius: 4px;
 }
-#cbt-toggle.cbt-in-player:hover { background: rgba(255, 255, 255, .2); }
-#cbt-toggle.cbt-in-player.cbt-on { color: #bf94ff; }
+#cbt-toggle.cbt-in-player:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+#cbt-toggle.cbt-in-player.cbt-on {
+  color: #bf94ff;
+}
 
 #cbt-toggle.cbt-floating {
   position: fixed;
@@ -87,18 +93,28 @@ body.cbt-active [data-cbt-hide] {
   right: 8px;
   z-index: 99999;
   padding: 6px 10px;
-  font: 600 13px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  font:
+    600 13px/1 system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
   color: #fff;
   background: #9147ff;
   border: 0;
   border-radius: 6px;
-  opacity: .8;
+  opacity: 0.8;
 }
-#cbt-toggle.cbt-floating:hover { opacity: 1; }
-#cbt-toggle[hidden] { display: none !important; }
+#cbt-toggle.cbt-floating:hover {
+  opacity: 1;
+}
+#cbt-toggle[hidden] {
+  display: none !important;
+}
 
 /* Divider */
-#cbt-divider { display: none; }
+#cbt-divider {
+  display: none;
+}
 
 body.cbt-active #cbt-divider {
   display: block;
@@ -113,7 +129,7 @@ body.cbt-active #cbt-divider {
   background: #18181b;
 }
 body.cbt-active #cbt-divider::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 2px;
   left: 50%;
@@ -121,10 +137,12 @@ body.cbt-active #cbt-divider::after {
   height: 4px;
   margin-left: -24px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, .35);
+  background: rgba(255, 255, 255, 0.35);
 }
 body.cbt-active #cbt-divider:hover::after,
-body.cbt-active #cbt-divider.cbt-dragging::after { background: #bf94ff; }
+body.cbt-active #cbt-divider.cbt-dragging::after {
+  background: #bf94ff;
+}
 
 /* Player height is controlled by the divider */
 body.cbt-active .persistent-player,
@@ -134,7 +152,7 @@ body.cbt-active .video-player__container {
 }
 
 /* Hype train in the chat header row */
-body.cbt-active .sticky-community-highlight:has([class*="hypeTrainBanner"]) {
+body.cbt-active .sticky-community-highlight:has([class*='hypeTrainBanner']) {
   display: block !important;
   position: fixed !important;
   top: calc(var(--cbt-top, 60vh) + 8px) !important;
@@ -147,18 +165,18 @@ body.cbt-active .sticky-community-highlight:has([class*="hypeTrainBanner"]) {
   overflow: hidden !important;
   z-index: 10 !important;
 }
-body.cbt-active .sticky-community-highlight:has([class*="hypeTrainBanner"]) :is(div, button) {
+body.cbt-active .sticky-community-highlight:has([class*='hypeTrainBanner']) :is(div, button) {
   min-height: 0 !important;
   height: 100% !important;
 }
-body.cbt-active [class*="hypeTrainBanner"] div:has(> strong),
-body.cbt-active [class*="hypeTrainBanner"] div:has(> strong) div {
+body.cbt-active [class*='hypeTrainBanner'] div:has(> strong),
+body.cbt-active [class*='hypeTrainBanner'] div:has(> strong) div {
   height: auto !important;
 }
-body.cbt-active [class*="hypeTrainBanner"] div:has(> strong) {
+body.cbt-active [class*='hypeTrainBanner'] div:has(> strong) {
   flex-direction: row !important;
   align-items: baseline !important;
-  gap: .5rem !important;
+  gap: 0.5rem !important;
 }
 
 /* Display options */
