@@ -76,6 +76,8 @@ A release is created automatically when a new version in `manifest.json` reaches
 ### License
 [MIT](LICENSE)
 
+The extension contains no third-party code; ESLint and Prettier are only used during development. A test in [`tests/licenses.test.mjs`](tests/licenses.test.mjs) fails if a dependency that ships with the extension uses a license that is not on the allow list.
+
 ## Deutsch
 
 Browser-Erweiterung für Chrome und Edge, die den Twitch-Chat per Klick unter das Video verschiebt.
@@ -147,3 +149,5 @@ Ein Release entsteht automatisch, sobald eine neue Version in `manifest.json` au
 
 ### Lizenz
 [MIT](LICENSE)
+
+Die Erweiterung enthält keinen fremden Code; ESLint und Prettier dienen nur der Entwicklung. Ein Test in [`tests/licenses.test.mjs`](tests/licenses.test.mjs) schlägt fehl, wenn eine Abhängigkeit, die mit der Erweiterung ausgeliefert wird, eine Lizenz verwendet, die nicht auf der Liste erlaubter Lizenzen steht.
